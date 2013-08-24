@@ -1,0 +1,31 @@
+{
+  "name": "jscov",
+  "version": "0.0.1-dev",
+  "description": "Abstrakt JavaScript Coverage",
+  "bin": {
+    "jscov": "./bin/jscov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:afbobak/jscov.git"
+  },
+  "keywords": [
+    "code coverage",
+    "javascript",
+    "jscoverage"
+  ],
+  "author": "Andreas F. Bobak (bobak@abstrakt.ch)",
+  "license": "BSD",
+  "dependencies": {
+    "burrito": "~0.2.12",
+    "commander": "~2.0.0",
+    "mustache": "~0.7.2"
+  },
+  "devDependencies": {
+    "buster": "~0.6.12",
+    "buster-lint": "~0.3.1"
+  },
+  "engines": {
+    "node": ">=0.8"
+  }
+}
