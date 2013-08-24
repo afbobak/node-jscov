@@ -1,6 +1,6 @@
 {
   "name": "yacoco",
-  "version": "0.0.2",
+  "version": "0.0.3-dev",
   "description": "Yet Another Code Coverage, for JavaScript only",
   "bin": {
     "yacoco": "./bin/yacoco"
