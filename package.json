@@ -1,13 +1,13 @@
 {
   "name": "yacoco",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Yet Another Code Coverage, for JavaScript only",
   "bin": {
-    "jscoco": "./bin/jscoco"
+    "yacoco": "./bin/yacoco"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:afbobak/jscov.git"
+    "url": "git@github.com:afbobak/yacoco.git"
   },
   "keywords": [
     "code coverage",
