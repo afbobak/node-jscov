@@ -5,10 +5,8 @@
 
 var libpath = process.env.ENABLE_COV ? "../lib-cov" : "../lib";
 
-var buster = require("buster");
-var sinon  = require("buster/node_modules/sinon");
-var assert = buster.assertions.assert;
-var refute = buster.assertions.refute;
+var sinon  = require("sinon");
+var assert = require("assert");
 
 var fs       = require("fs");
 var path     = require("path");
@@ -21,16 +19,16 @@ var instrument = require(libpath + "/instrument");
 
 // ==== Test Case
 
-buster.testCase("instrument-init", {
-  "should exist": function () {
-    assert.isFunction(instrument);
-  }
+suite("instrument-init", function () {
+  test("should exist", function () {
+    assert.equal(typeof instrument, "function");
+  });
 });
 
 // ==== Test Case
 
-buster.testCase("instrument-wrapper", {
-  "should prepend mustached header": function () {
+suite("instrument-wrapper", function () {
+  test("should prepend mustached header", sinon.test(function () {
     this.stub(mustache, "render").returns("header;");
     this.stub(path, "resolve").returns("headerfile");
     this.stub(fs, "readFileSync");
@@ -39,47 +37,47 @@ buster.testCase("instrument-wrapper", {
 
     var wrapped = instrument("", "f", "c");
 
-    assert.calledOnce(fs.readFileSync.withArgs("headerfile"));
-    assert.calledOnce(mustache.render);
-    assert.calledWith(mustache.render, "header content", {
+    sinon.assert.calledOnce(fs.readFileSync.withArgs("headerfile"));
+    sinon.assert.calledOnce(mustache.render);
+    sinon.assert.calledWith(mustache.render, "header content", {
       JSCOV_FILE   : "f",
       JSCOV_OUTPUT : "c"
     });
-    assert.equals(wrapped, "header;");
-  },
+    assert.equal(wrapped, "header;");
+  }));
 
-  "should ignore irrelevant lines": function () {
+  test("should ignore irrelevant lines", sinon.test(function () {
     this.stub(mustache, "render").returns("");
 
     var wrapped = instrument("/* comment */\n// test\n\n", "f", "c");
 
-    assert.equals(wrapped, "");
-  },
+    assert.equal(wrapped, "");
+  }));
 
-  "should wrap var": function () {
+  test("should wrap var", sinon.test(function () {
     this.stub(mustache, "render").returns("");
 
     var wrapped = instrument("var x = 1;", "", "");
 
-    assert.equals(wrapped,
+    assert.equal(wrapped,
       "_$jscov[1]=0;\n" +
       "{\n" +
       "    _$jscovLine(1);\n" +
       "    var x = 1;\n" +
       "}");
-  },
+  }));
 
-  "should double-wrap calls": function () {
+  test("should double-wrap calls", sinon.test(function () {
     this.stub(mustache, "render").returns("");
 
     var wrapped = instrument("a.call();", "", "");
 
-    assert.equals(wrapped,
+    assert.equal(wrapped,
       "_$jscov[1]=0;\n" +
       "_$jscov[1]=0;\n" +
       "{\n" +
       "    _$jscovLine(1);\n" +
       "    _$jscovLine(1)(a.call());\n" +
       "}");
-  }
+  }));
 });

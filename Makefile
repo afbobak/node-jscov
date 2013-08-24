@@ -29,7 +29,7 @@ test:
 	@echo -e "${HR}"
 	@echo -e "\033[01;30m# Running Tests      ... \033[00m"
 	@echo -e "${HR}"
-	buster-test
+	mocha -u tdd
 	@echo -e "\033[01;37m# Running Tests      ... \033[00m${CHECK}"
 
 cov:
@@ -37,12 +37,12 @@ cov:
 	@echo -e "\033[01;30m# Coverage Report    ... \033[00m"
 	@rm -fr lib-cov report
 	@yacoco lib lib-cov
-	@ENABLE_COV=1 buster-test -c test/buster-cov.js
+	@ENABLE_COV=1 mocha -u tdd
 	@yacoco --report lib lib-cov
 	@genhtml lib-cov/coverage.lcov -o report
 	@echo -e "\033[01;37m# Coverage Repot     ... \033[00m${CHECK}"
 
 watch:
-	buster autotest
+	mocha -u tdd -w
 
 .PHONY: clean init test cov watch

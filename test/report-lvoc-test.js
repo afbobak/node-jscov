@@ -5,33 +5,33 @@
 
 var libpath = process.env.ENABLE_COV ? "../lib-cov" : "../lib";
 
-var buster = require("buster");
-var sinon  = require("buster/node_modules/sinon");
-var assert = buster.assertions.assert;
-var refute = buster.assertions.refute;
+// var buster = require("buster");
+// var sinon  = require("buster/node_modules/sinon");
+// var assert = buster.assertions.assert;
+// var refute = buster.assertions.refute;
 
-var fs       = require("fs");
-var path     = require("path");
+// var fs       = require("fs");
+// var path     = require("path");
 
-var reportLvoc = require(libpath + "/report-lcov");
+// var reportLvoc = require(libpath + "/report-lcov");
 
-// ==== Helpers
+// // ==== Helpers
 
-// ==== Test Case
+// // ==== Test Case
 
-buster.testCase("report-lcov-init", {
-  "should exist": function () {
-    assert.isFunction(reportLvoc);
-  }
-});
+// buster.testCase("report-lcov-init", {
+//   "should exist": function () {
+//     assert.isFunction(reportLvoc);
+//   }
+// });
 
-// ==== Test Case
+// // ==== Test Case
 
-buster.testCase("//report-lcov-report", {
-  "should write coverage": function () {
-    this.stub(fs, "readFileSync").returns("{}");
-    this.stub(fs, "writeFileSync");
-    reportLvoc("cov");
-    assert.calledOnce(fs.readFileSync.withArgs("cov"));
-  }
-});
+// buster.testCase("//report-lcov-report", {
+//   "should write coverage": function () {
+//     this.stub(fs, "readFileSync").returns("{}");
+//     this.stub(fs, "writeFileSync");
+//     reportLvoc("cov");
+//     assert.calledOnce(fs.readFileSync.withArgs("cov"));
+//   }
+// });
