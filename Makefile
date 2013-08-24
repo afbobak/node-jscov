@@ -4,7 +4,7 @@ CHECK  =\033[32m✔ Done\033[39m
 FAILED =\033[01;31m✗ Failed\033[00;39m
 HR     =\033[37m--------------------------------------------------\033[39m
 
-PATH := ./node_modules/.bin:$(PATH)
+PATH := ./bin:./node_modules/.bin:$(PATH)
 
 all:
 	@echo -e "${HR}"
@@ -16,12 +16,10 @@ all:
 clean:
 	@echo -e "${HR}"
 	@echo -en "\033[01;30m# Cleaning           ... \033[00m"
-	@rm -fr node_modules
-	@rm -fr lib-cov
-	@rm -fr report
+	@rm -fr node_modules lib-cov report
 	@echo -e "${CHECK}"
 
-init:
+init: clean
 	@echo -e "${HR}"
 	@echo -e "\033[01;30m# Initializing       ... \033[00m"
 	npm install
@@ -38,9 +36,9 @@ cov:
 	@echo -e "${HR}"
 	@echo -e "\033[01;30m# Coverage Report    ... \033[00m"
 	@rm -fr lib-cov report
-	@jscov lib lib-cov
+	@yacoco lib lib-cov
 	@ENABLE_COV=1 buster-test -c test/buster-cov.js
-	@jscov --report lib lib-cov
+	@yacoco --report lib lib-cov
 	@genhtml lib-cov/coverage.lcov -o report
 	@echo -e "\033[01;37m# Coverage Repot     ... \033[00m${CHECK}"
 

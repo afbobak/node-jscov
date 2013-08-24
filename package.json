@@ -1,9 +1,9 @@
 {
-  "name": "jscov",
+  "name": "yacoco",
   "version": "0.0.1-dev",
-  "description": "Abstrakt JavaScript Coverage",
+  "description": "Yet Another Code Coverage, for JavaScript only",
   "bin": {
-    "jscov": "./bin/jscov"
+    "jscoco": "./bin/jscoco"
   },
   "repository": {
     "type": "git",
