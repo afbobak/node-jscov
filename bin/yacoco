@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+
+/*jslint devel: false, onevar: false, browser: false, indent: 4 */
+/*global */
+/*! Copyright (C) 2013 by Andreas F. Bobak, Switzerland. All Rights Reserved. !*/
+
+require("../lib/index");

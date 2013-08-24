@@ -1,0 +1,5 @@
+/lib-cov
+/node_modules
+/.latest.id
+/report
+.DS_Store
