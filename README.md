@@ -1,7 +1,10 @@
 YaCoCo - Yet Another Code Coverage Tool for JavaScript
 ======================================================
 
-Provides inline code coverage for JavaScript similar to jscoverage and jscov.
+Provides inline code coverage for JavaScript more similar to
+[jscoverage](https://github.com/visionmedia/node-jscoverage) and
+[jscov](https://github.com/jakobmattsson/jscov) than
+[jacoco](http://www.eclemma.org/jacoco/).
 
 Generates .lvoc output. Install
 [lcov](http://ltp.sourceforge.net/coverage/lcov/) with genhtml for generating a
